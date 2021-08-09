@@ -15,7 +15,7 @@
 
 食用方法：
 
-- 1.把 `conio for mac` 文件夹克隆到本地。
+- 1.把 `conio-for-mac` 文仓库克隆到本地。
 - 2.打开「访达」，右键「Xcode」，选择「显示包内容」。
 - 3.打开 `Contents` -> `Developer` -> `Platforms` -> `Mac OSX.platform` -> `Developer` -> `SDKs` -> `MacOSX.sdk` -> `usr` -> `include`
-- 4.把 `conio for mac` 文件夹中的文件放入 `include` 文件夹中
+- 4.把 `conio-for-mac` 文件夹中的文件放入 `include` 文件夹中
