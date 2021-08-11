@@ -29,10 +29,12 @@
 #include <wincon.h>
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
-struct text_info {
+struct text_info
+{
     unsigned char winleft;
     unsigned char wintop;
     unsigned char winright;
@@ -46,9 +48,25 @@ struct text_info {
     unsigned char cury;
 };
 
-enum COLORS { BLACK, BLUE, GREEN, CYAN, RED, MAGENTA, BROWN, LIGHTGRAY,
-              DARKGRAY, LIGHTBLUE, LIGHTGREEN, LIGHTCYAN, LIGHTRED, 
-              LIGHTMAGENTA, YELLOW, WHITE } ;
+enum COLORS
+{
+    BLACK,
+    BLUE,
+    GREEN,
+    CYAN,
+    RED,
+    MAGENTA,
+    BROWN,
+    LIGHTGRAY,
+    DARKGRAY,
+    LIGHTBLUE,
+    LIGHTGREEN,
+    LIGHTCYAN,
+    LIGHTRED,
+    LIGHTMAGENTA,
+    YELLOW,
+    WHITE
+};
 
 #define _NOCURSOR      0
 #define _SOLIDCURSOR   1

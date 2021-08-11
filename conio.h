@@ -18,7 +18,8 @@
 #ifndef RC_INVOKED
 
 #ifdef	__cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
 _CRTIMP char* __cdecl __MINGW_NOTHROW	_cgets (char*);
