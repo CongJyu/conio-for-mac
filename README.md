@@ -16,19 +16,16 @@
 在 C++ 中这样：
 
 ```c++
-#include <myconio_mac.h>
+#include "myconio_mac.h"
 ```
 
 或者，
 在 Objective-C++ 中这样：
 
 ```objective-c++
-#import <myconio_mac.h>
+#import "myconio_mac.h"
 ```
 
 ### 食用方法：
 
-- 1.把 `conio-for-mac` 仓库克隆到本地。
-- 2.打开「访达」，右键「Xcode」，选择「显示包内容」。
-- 3.打开 `Contents` -> `Developer` -> `Platforms` -> `Mac OSX.platform` -> `Developer` -> `SDKs` -> `MacOSX.sdk` -> `usr` -> `include`
-- 4.把 `conio-for-mac` 文件夹中的文件放入 `include` 文件夹中
+把 `myconio_mac.cpp` 添加至项目中 `src` 文件夹中，把 `myconio_mac.h` 添加至项目 `include` 文件夹中。
