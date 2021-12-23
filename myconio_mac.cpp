@@ -1,16 +1,16 @@
+//  compile with myconio_mac.h
 // Nom du fichier : myconio_mac.h
 // Auteur : puzzog.isat@gmail.com
 // Objectif : remédier à l'absence de certaines fonctions conio sous mac 
 
-#include <stdio.h>
+#include <cstdio>
 #include <termios.h>
 #include <unistd.h>
-#include <stdlib.h>
-#include <time.h>
+#include <cstdlib>
+#include <ctime>
 #include "myconio_mac.h"
 
-enum
-{
+enum {
     BLACK,
     RED,
     GREEN,
@@ -19,7 +19,7 @@ enum
     MAGENTA,
     CYAN,
     LIGHTGRAY,
-    GARKGRAY,
+    DARKGRAY,
     LIGHTRED,
     LIGHTGREEN,
     YELLOW,
@@ -28,6 +28,7 @@ enum
     LIGHTCYAN,
     WHITE,
 };
+
 #define CLEARELN
 #define WHITEBOLD 9
 #define ESC 033
@@ -35,103 +36,87 @@ enum
 static struct termios news_settings;
 static int peek_character = -1;
 
-struct textinfo
-{
+struct textinfo {
     int curx;
     int cury;
 };
 
-struct textinfo text={0, 0};
+struct textinfo text = {0, 0};
 
-void mode_raw(int activer)
-{
+void mode_raw(int activer) {
     static struct termios cooked;
     static int raw_actif = 0;
-    if (raw_actif == activer)
-    {
+    if (raw_actif == activer) {
         return;
     }
-    if (activer)
-    {
+    if (activer) {
         struct termios raw;
         tcgetattr(STDIN_FILENO, &cooked);
         raw = cooked;
         cfmakeraw(&raw);
         tcsetattr(STDIN_FILENO, TCSANOW, &raw);
-    }
-    else
-    {
+    } else {
         tcsetattr(STDIN_FILENO, TCSANOW, &cooked);
     }
     raw_actif = activer;
 }
 
-void gotoxy(int x, int y)
-{
-    if (x == 1 && y == 1)
-    {
+void gotoxy(int x, int y) {
+    if (x == 1 && y == 1) {
         printf("%c[%d;%dH", ESC, 0, 0);
         text.curx = 0;
         text.cury = 0;
-    }
-    else
-    {
+    } else {
         printf("%c[%d;%dH", ESC, y, x);
         text.curx = x;
         text.cury = y;
     }
 }
 
-void Sleep(int pause)
-{
+void Sleep(int pause) {
     usleep(pause * 1000);
     fflush(stdout);
 }
 
-void Blod(int activer)
-{
-    (activer)? printf("\e[1m") : printf("\e[0m");
+void Bold(int activer) {
+    (activer) ? printf("\e[1m") : printf("\e[0m");
 }
 
-void textcolor(int fg)
-{
+void textcolor(int fg) {
     int x = fg;
-    if ((fg < 0) || (fg > 7)) x = 0;
+    if ((fg < 0) || (fg > 7)) {
+        x = 0;
+    }
     printf("\e[3%dm", x);
 }
 
-void textbackground(int color)
-{
+void textbackground(int color) {
     printf("%c[%dm", ESC, 40+color);
 }
 
-int wherex(void)
-{
+int wherex(void) {
     return text.curx;
 }
 
-int wherey(void)
-{
+int wherey(void) {
     return text.cury;
 }
 
-int getche()
-{
+int getche() {
     struct termios t;
     int c;
 
     tcgetattr(0, &t);
-    t.c_lflag& =~ ICANON;
+    t.c_lflag &= ~ ICANON;
     tcsetattr(0, TCSANOW, &t);
     fflush(stdout);
     c = getchar();
-    t.c_lflag|=ICANON;
+    t.c_lflag |= ICANON;
     tcsetattr(0, TCSANOW, &t);
     return c;
 }
 
-int getch(void)
-{
+int getch(void) {
     struct termios oldt, newt;
     int ch;
     tcgetattr(STDIN_FILENO, &oldt);
@@ -139,38 +124,34 @@ int getch(void)
     newt.c_lflag &= ~(ICANON | ECHO);
     tcsetattr(STDIN_FILENO, TCSANOW, &newt);
     ch = getchar();
-    tcssetattr(STDIN_FILENO, TCSANOW, &oldt);
-
+    tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
     return ch;
 }
 
-int kbhit(void)
-{
+int kbhit(void) {
     unsigned char ch;
     int nread;
 
-    if (peek_character != -1) return 1;
-    new_settings.c_cc[VMIN] = 0;
-    tcsetattr(0, TCSANOW, &new_settings);
+    if (peek_character != -1) {
+        return 1;
+    }
+    news_settings.c_cc[VMIN] = 0;
+    tcsetattr(0, TCSANOW, &news_settings);
     nread = read(0, &ch, 1);
-    new_settings.c_cc[VMIN] = 1;
-    tcsetattr(0, TCSANOW, &new_settings);
-    if (nread == 1)
-    {
+    tcsetattr(0, TCSANOW, &news_settings);
+    if (nread == 1) {
         peek_character = ch;
         return 1;
     }
     return 0;
 }
 
-void clrscr(void)
-{
+void clrscr(void) {
     printf("%c[2J", ESC);
     gotoxy(0, 0);
 }
 
-char ReadKey(void)
-{
+char ReadKey(void) {
     char c;
     mode_raw(1);
     c = getchar();
@@ -178,23 +159,20 @@ char ReadKey(void)
     return c;
 }
 
-int KeyPressed(void)
-{
+int KeyPressed(void) {
     struct timeval tv = {0, 0};
     fd_set readfds;
 
     FD_ZERO(&readfds);
     FD_SET(STDIN_FILENO, &readfds);
 
-    return select(STDIN_FILENO + 1, &readfds, NULL, NULL, &tv) == 1;
+    return select(STDIN_FILENO + 1, &readfds, NULL, &tv) == 1;
 }
 
-void GtPass(char * prompt, char * pass)
-{
+void GtPass(char * prompt, char * pass) {
     int cpt = 0;
     printf("%s", prompt);
-    while((pass[cpt] = ReadKey())!= 13 && cpt!= 100)
-    {
+    while ((pass[cpt] = ReadKey()) != 13 && cpt != 100) {
         putchar('*');
         cpt++;
     }
@@ -202,38 +180,25 @@ void GtPass(char * prompt, char * pass)
     pass[cpt] = 0;
 }
 
-void _fflush(void)
-{
+void _fflush(void) {
     int Stdin;
     while ((Stdin = getchar()) != '\n' && Stdin != EOF);
 }
 
-void line(int x, char c1, char c2)
-{
+void line(int x, char c1, char c2) {
     int cpt;
     putchar(c1);
-    for (cpt = 1; cpt<=(x-2); cpt++) putchar(c2);
+    for (cpt = 1; cpt <= (x - 2); cpt++) {
+        putchar(c2);
+    }
     putchar(c1);
     putchar('\n');
 }
 
-/*
-void box(int x, int y, char c1, char c2, char c3, char c4)
-{
-    int cpt;
-    line(x, c1, c2);
-    for (cpt = 1; cpt<=(y-2); cpt++) line(x, c3, c4);
-    line(x, c1, c2);
-}
-*/
-
-void MYclrwin(int x, int y, int xx, int yy)
-{
+void MYclrwin(int x, int y, int xx, int yy) {
     int i;
-
-    for (i = 1; i <= (yy/2)-2; i++)
-    {
-        gotoxy(x,y);
+    for (i = 1; i <= (yy / 2) - 2; i++) {
+        gotoxy(x, y);
         y++;
         line(xx, ' ', ' ');
     }

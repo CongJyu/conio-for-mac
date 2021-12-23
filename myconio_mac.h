@@ -4,7 +4,8 @@
 
 #ifndef MYCONIO_MAC_H_INCLUDED
 #define MYCONIO_MAC_H_INCLUDED
-#include "myconio_mac.c"
+
+#include "myconio_mac.cpp"
 
 void mode_raw(int);
 void mode_raw(int);
@@ -28,4 +29,5 @@ void textcolor(int);
 void textbackground(int);
 void line(int, char, char);
 void MYclrwin(int, int, int, int);
+
 #endif
