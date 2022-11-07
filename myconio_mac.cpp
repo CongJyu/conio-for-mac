@@ -91,7 +91,7 @@ void textcolor(int fg) {
 }
 
 void textbackground(int color) {
-    printf("%c[%dm", ESC, 40+color);
+    printf("%c[%dm", ESC, 40 + color);
 }
 
 int wherex(void) {
@@ -107,7 +107,7 @@ int getche() {
     int c;
 
     tcgetattr(0, &t);
-    t.c_lflag &= ~ ICANON;
+    t.c_lflag &= ~ICANON;
     tcsetattr(0, TCSANOW, &t);
     fflush(stdout);
     c = getchar();
@@ -169,7 +169,7 @@ int KeyPressed(void) {
     return select(STDIN_FILENO + 1, &readfds, NULL, &tv) == 1;
 }
 
-void GtPass(char * prompt, char * pass) {
+void GtPass(char *prompt, char *pass) {
     int cpt = 0;
     printf("%s", prompt);
     while ((pass[cpt] = ReadKey()) != 13 && cpt != 100) {
