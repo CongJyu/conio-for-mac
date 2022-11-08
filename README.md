@@ -1,34 +1,32 @@
 # conio-for-mac
 
-💜 conio for macOS ｜ myconio_mac 头文件
+💜 conio for macOS ｜ myconio_mac 頭文件
 
-## 基本概况：
+## Introduction 基本情況
 
-- 这些头文件位于 `conio-for-mac` 文件夹内。
-- 由于 macOS 无法使用 `conio.h` 头文件，所以有一位法国大神开发了 myconio 头文件供 macOS 用户使用，笔者根据原版头文件做了一些整理。大神的相关信息包含于头文件的注释中。
+由於 macOS 無法使用 `conio.h` 頭文件，所以有一位法國大佬開發咗 `myconio` 頭文件畀 macOS 用戶使用。本人根據初始版本嘅頭文件稍稍做咗一啲修改同整理。
 
-> 注意：部分附带的注释为法语，尚未翻译。
+> 注意：部分註釋係法語，暫未翻譯。
 
-## 使用示例：
+## Examples 使用示例
 
-在 C++ 中这样：
+係 C++ 中咁寫：
 
 ```c++
 #include "myconio_mac.h"
 ```
 
-或者，
-在 Objective-C++ 中这样：
+或者， 係 Objective-C++ 中咁寫：
 
 ```objective-c++
 #import "myconio_mac.h"
 ```
 
-## 食用方法：
+## Usages 使用方法
 
-把 `myconio_mac.cpp` 添加至项目中 `src` 文件夹中，把 `myconio_mac.h` 添加至项目 `include` 文件夹中。
+將 `myconio_mac.cpp` 添加至專案（項目）嘅 `src` 目錄或者文件夾中，將 `myconio_mac.h` 添加至專案（項目）嘅 `include` 目錄或者文件夾中。
 
-## 目前存在的问题
+## Issues 目前存在嘅問題
 
 ```cpp
 int KeyPressed(void) {
@@ -42,8 +40,8 @@ int KeyPressed(void) {
 }
 ```
 
-这里 `return` 语句中 `&tv` 有一些错误，暂时未修复。
+呢度 `return` 語句中 `&tv` 有一啲錯誤，暫時未修復。
 
-## Support
+## Support 支持一下
 
 <a href="https://www.buymeacoffee.com/rainchen" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
