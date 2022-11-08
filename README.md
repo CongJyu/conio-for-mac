@@ -43,3 +43,7 @@ int KeyPressed(void) {
 ```
 
 这里 `return` 语句中 `&tv` 有一些错误，暂时未修复。
+
+## Support
+
+<a href="https://www.buymeacoffee.com/rainchen" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
