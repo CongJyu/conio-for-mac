@@ -3,11 +3,6 @@
 // Auteur : puzzog.isat@gmail.com
 // Objectif : remédier à l'absence de certaines fonctions conio sous mac 
 
-#include <cstdio>
-#include <termios.h>
-#include <unistd.h>
-#include <cstdlib>
-#include <ctime>
 #include "myconio_mac.h"
 
 enum {
