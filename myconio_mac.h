@@ -1,6 +1,6 @@
 // Nom du fichier : myconio_mac.h
 // Auteur : puzzog.isat@gmail.com
-// Objectif : remédier à l'absence de certaines fonctions conio sous mac 
+// Objectif : remédier à l'absence de certaines fonctions conio sous mac
 
 #ifndef MYCONIO_MAC_H_INCLUDED
 #define MYCONIO_MAC_H_INCLUDED

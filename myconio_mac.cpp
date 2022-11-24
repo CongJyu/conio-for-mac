@@ -1,7 +1,7 @@
 //  compile with myconio_mac.h
 // Nom du fichier : myconio_mac.h
 // Auteur : puzzog.isat@gmail.com
-// Objectif : remédier à l'absence de certaines fonctions conio sous mac 
+// Objectif : remédier à l'absence de certaines fonctions conio sous mac
 
 #include "myconio_mac.h"
 
@@ -177,7 +177,8 @@ void GtPass(char *prompt, char *pass) {
 
 void _fflush(void) {
     int Stdin;
-    while ((Stdin = getchar()) != '\n' && Stdin != EOF);
+    while ((Stdin = getchar()) != '\n' && Stdin != EOF)
+        ;
 }
 
 void line(int x, char c1, char c2) {
