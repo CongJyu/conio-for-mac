@@ -5,8 +5,6 @@
 #ifndef MYCONIO_MAC_H_INCLUDED
 #define MYCONIO_MAC_H_INCLUDED
 
-#include "myconio_mac.cpp"
-
 void mode_raw(int);
 
 void mode_raw(int);
