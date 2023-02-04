@@ -1,10 +1,35 @@
 # conio-for-mac
 
-💜 conio for macOS ｜ myconio_mac 頭文件
+💜 `myconio_mac.cpp` 頭文件
 
 ## Introduction 基本情況
 
-由於 macOS 無法使用 `conio.h` 頭文件，所以有一位法國大佬開發咗 `myconio` 頭文件畀 macOS 用戶使用。本人根據初始版本嘅頭文件稍稍做咗一啲修改同整理。
+由於 macOS/Linux 無法使用 `conio.h` 頭文件，本人根據初始版本嘅頭文件同埋網路上嘅 `conio_mac.h` 頭文件稍稍做咗一啲修改同整理。
+
+## Functions 包涵嘅函式
+
+| Functions 函式 | Explainations 解釋 |
+| --- | --- |
+| `void mode_raw(int)` |  |
+| `void _fflush(void)` |  |
+| `void underline(int)` | Underline the following output contents if the param is 1; if it is 0 then cancel the underline operation. 如果參數為 1 嘅話，從本條語句開始畀後面嘅輸出內容加上下劃線；如果為 0 嘅話就取消下劃線操作。 |
+| `char read_key(void)` |  |
+| `int key_pressed(void)` |  |
+| `void get_pass(char *, char *)` |  |
+| `int getche()` |  |
+| `int getch(void)` |  |
+| `int where_x(void)` | Show the x position of the current cursor. 顯示當前光標嘅 x 位置。 |
+| `int where_y(void)` | Show the y position of the current cursor. 顯示當前光標嘅 y 位置。 |
+| `int keyboard_hit(void)` |  |
+| `void line(int, char, char)` | Draw a line, set length, the first and last character and the filluped character. 畫線，設定長度，兩端嘅字符同埋中間填充嘅字符。 |
+| `void goto_xy(int, int)` | Move the cursor to (x, y). 移動光標到 (x, y) 嘅位置。 |
+| `void sleep_for(int)` | Sleep for some time. 暫停一段時間。 |
+| `void bold(int)` |  Bold the following output contents if the param is 1; if it is 0 then cancel the bold operation. 如果參數為 1 嘅話，從本條語句開始畀後面嘅輸出內容加粗體；如果為 0 嘅話就取消加粗操作。  |
+| `void text_color(int)` | Set text color. 設定文字顏色。 |
+| `void test_background(int)` | Set text background color. 設定文字背景顏色。 |
+| `void clear_eol(void)` | Clear the entire line. 清除整一行嘅內容。 |
+| `void clear_screen(void)` | Clear the entire screen. 清除整個屏幕嘅內容。 |
+| `void clear_win(int, int, int, int)` |  |
 
 ## Usages 使用方法
 
