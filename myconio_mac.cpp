@@ -50,24 +50,24 @@ struct TextInfo {
 // claim functions
 
 void mode_raw(int);
-void _fflush(void);
+void _fflush();
 void underline(int);
-char read_key(void);
-int key_pressed(void);
+char read_key();
+int key_pressed();
 void get_pass(char *, char *);
 int getche();
-int getch(void);
-int where_x(void);
-int where_y(void);
-int keyboard_hit(void);
+int getch();
+int where_x();
+int where_y();
+int keyboard_hit();
 void line(int, char, char);
 void goto_xy(int, int);
 void sleep_for(int);
 void bold(int);
 void text_color(int);
 void test_background(int);
-void clear_eol(void);
-void clear_screen(void);
+void clear_eol();
+void clear_screen();
 void clear_win(int, int, int, int);
 
 // definitions
@@ -92,10 +92,9 @@ void mode_raw(int activator) {
 }
 
 // flush
-void _fflush(void) {
-    int stdin_var{};
+void _fflush() {
+    int stdin_var;
     while ((stdin_var = getchar()) != '\n' and stdin_var != EOF) {
-        continue;
     }
 }
 
@@ -105,7 +104,7 @@ void underline(int activator) {
 }
 
 // read key
-char read_key(void) {
+char read_key() {
     char key;
     mode_raw(1);
     key = getchar();
@@ -114,7 +113,7 @@ char read_key(void) {
 }
 
 // key press
-int key_pressed(void) {
+int key_pressed() {
     struct timeval timev = {0, 0};
     fd_set readfds;
     FD_ZERO(&readfds);
@@ -149,9 +148,9 @@ int getche() {
 }
 
 // get character
-int getch(void) {
+int getch() {
     struct termios old_t, new_t;
-    int ch{};
+    int ch;
     tcgetattr(STDIN_FILENO, &old_t);
     new_t = old_t;
     new_t.c_lflag &= ~(ICANON | ECHO);
@@ -162,19 +161,19 @@ int getch(void) {
 }
 
 // show x
-int where_x(void) {
+int where_x() {
     return text.curx;
 }
 
 // show y
-int where_y(void) {
+int where_y() {
     return text.cury;
 }
 
 // keyboard hit
-int keyboard_hit(void) {
+int keyboard_hit() {
     unsigned char ch;
-    int nread{};
+    int nread;
     if (peek_character != -1) {
         return 1;
     }
@@ -239,12 +238,12 @@ void test_background(int background_color) {
 }
 
 // clear characters to end of line
-void clear_eol(void) {
+void clear_eol() {
     CLEARELN;
 }
 
 // clear screen and go back to (0, 0)
-void clear_screen(void) {
+void clear_screen() {
     printf("%c[2J", ESC);
     goto_xy(0, 0);
 }
@@ -258,4 +257,4 @@ void clear_win(int x, int y, int xx, int yy) {
     }
 }
 
-#endif  // MYCONIO_MAC_CPP
+#endif  // MYCONIO_MAC_CPP_INCLUDED
